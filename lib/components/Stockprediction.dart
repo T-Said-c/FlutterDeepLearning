@@ -21,10 +21,9 @@ Future<void> loadModel() async {
     try {
       debugPrint("Loading model...");
   final interpreter = await Interpreter.fromAsset('assets/models/LSTM.tflite');
+    debugPrint("hello I like dicks");
       debugPrint("Model loaded: $interpreter");
-      setState(() {
-        _isModelLoaded = true; // Update UI after the model is loaded
-      });
+      debugPrint("Model input shape: ${interpreter.getInputTensor(0).shape}");
     } catch (e) {
       debugPrint("Error loading model: $e");
     }
