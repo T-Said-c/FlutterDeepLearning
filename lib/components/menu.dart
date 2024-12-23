@@ -62,10 +62,13 @@ class Menu extends StatelessWidget {
             ],
           ),
           const Divider(thickness: 3.0),
-          const ListTile(
+          ListTile(
             leading: Icon(Icons.access_time_filled_outlined),
             title: Text("Stock Price Prediction"),
             subtitle: Text("LSTM"),
+            onTap: () {
+              Navigator.pushNamed(context, '/Stock');
+            },
           ),
           const Divider(thickness: 3.0),
           ListTile(

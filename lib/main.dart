@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_app/components/Stockprediction.dart';
 import 'firebase_options.dart';
 import 'package:flutter_app/widget_tree.dart';
 import 'package:flutter_app/Components/VocalAssistant.dart';
@@ -24,8 +25,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-      '/Voice': (context)=> const VocalAssistant()
-      // '/VocalAssistant': (context) => const VocalAssistant(),
+      '/Voice': (context)=> const VocalAssistant(),
+      '/Stock': (context)=> const Stockprediction()
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
