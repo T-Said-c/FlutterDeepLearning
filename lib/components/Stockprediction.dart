@@ -1,7 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/auth.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:tflite/tflite.dart';
+import 'package:tflite_flutter/tflite_flutter.dart';
 
 class Stockprediction extends StatefulWidget {
   const Stockprediction({super.key});
@@ -11,6 +11,35 @@ class Stockprediction extends StatefulWidget {
 }
 
 class _StockpredictionState extends State<Stockprediction> {
+ bool _isModelLoaded = false;
+   @override
+  void initState() {
+    super.initState();
+    loadModel();
+  }
+Future<void> loadModel() async {
+    try {
+      debugPrint("Loading model...");
+  final interpreter = await Interpreter.fromAsset('assets/models/LSTM.tflite');
+      debugPrint("Model loaded: $interpreter");
+      setState(() {
+        _isModelLoaded = true; // Update UI after the model is loaded
+      });
+    } catch (e) {
+      debugPrint("Error loading model: $e");
+    }
+  }
+
+  // Future<void> runModel() async {
+  //   // Prepare your input data here
+  //   var input = [/* Your input data */];
+
+  //   var output = await Tflite.runModelOnBinary(
+  //     binary: input, // Input data in the required format
+  //   );
+
+  //   print("Model output: $output");
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +70,7 @@ class _StockpredictionState extends State<Stockprediction> {
               onPressed: () {
                 // Add your onPressed code here!
               },
-              child: const Text('Generateededed Prediction for trfrfrhe next 30 days'),
+              child: const Text('Generated Prediction for next 30 days ' ),
             ),
             const SizedBox(height: 20),
             Expanded(

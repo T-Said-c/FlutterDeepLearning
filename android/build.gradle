@@ -3,6 +3,17 @@ allprojects {
         google()
         mavenCentral()
     }
+    subprojects {
+        afterEvaluate { project ->
+            if (project.hasProperty('android')) {
+                project.android {
+                    if (namespace == null) {
+                        namespace project.group
+                    }
+                }
+            }
+        }
+    }
 }
 
 rootProject.buildDir = "../build"
@@ -16,12 +27,12 @@ subprojects {
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
-dependencies {
-  // Import the Firebase BoM
-  implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+// dependencies {
+//   // Import the Firebase BoM
+//   implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
 
 
-  // TODO: Add the dependencies for Firebase products you want to use
-  // When using the BoM, don't specify versions in Firebase dependencies
-  // https://firebase.google.com/docs/android/setup#available-libraries
-}
+//   // TODO: Add the dependencies for Firebase products you want to use
+//   // When using the BoM, don't specify versions in Firebase dependencies
+//   // https://firebase.google.com/docs/android/setup#available-libraries
+// }
